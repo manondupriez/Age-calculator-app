@@ -1,17 +1,6 @@
-button {
-    width: 64px;
-    height: 64px;
-    border: none;
-    background-color: $purple;
-    border-radius: 50%;
-    gap: 8px;
-
-    &:hover {
-        background-color: $offBlack;
-    }
-}
-
 .submitArea {
+
+    width: 100%;
 
     &__line {
         content: '';
@@ -20,4 +9,19 @@ button {
         background-color: $lightGrey;
     }
 
+}
+
+button {
+
+    width: 64px;
+    height: 64px;
+    gap: 8px;
+    background-color: $purple;
+    border: none;
+    border-radius: 50%;
+
+    &:hover {
+        background-color: $offBlack;
+    }
+    
 }

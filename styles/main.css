@@ -3,23 +3,15 @@
 }
 
 body {
+  overflow: hidden;
   padding: 88px 16px 238px;
   background-color: hsl(0, 0%, 86%);
   font-family: "Poppins", sans-serif;
 }
 
-button {
-  width: 64px;
-  height: 64px;
-  border: none;
-  background-color: hsl(259, 100%, 65%);
-  border-radius: 50%;
-  gap: 8px;
+.submitArea {
+  width: 100%;
 }
-button:hover {
-  background-color: hsl(0, 0%, 8%);
-}
-
 .submitArea__line {
   content: "";
   width: 115px;
@@ -27,10 +19,22 @@ button:hover {
   background-color: hsl(0, 0%, 86%);
 }
 
+button {
+  width: 64px;
+  height: 64px;
+  gap: 8px;
+  background-color: hsl(259, 100%, 65%);
+  border: none;
+  border-radius: 50%;
+}
+button:hover {
+  background-color: hsl(0, 0%, 8%);
+}
+
 .main {
   width: 343px;
-  margin: auto;
   height: 486px;
+  margin: auto;
   padding: 48px 24px;
   background-color: hsl(0, 0%, 100%);
   border-radius: 24px 24px 100px 24px;
@@ -46,11 +50,16 @@ button:hover {
 .age__area {
   gap: 8px;
 }
-
-.userValue {
+.age .userValue {
   color: hsl(259, 100%, 65%);
 }
 
+.form__birthday {
+  gap: 16px;
+}
+.form__group {
+  gap: 4px;
+}
 .form label {
   color: hsl(0, 1%, 44%);
   font-size: 12px;
@@ -77,12 +86,63 @@ button:hover {
   border: 1px solid hsl(259, 100%, 65%);
   caret-color: hsl(259, 100%, 65%);
 }
-.form__group {
-  gap: 4px;
-}
-.form__birthday {
-  gap: 16px;
-}
 .form .submitArea {
   margin: 32px 0;
+}
+
+@media screen and (min-width: 900px) {
+  body {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .main {
+    width: 840px;
+    height: 651px;
+    padding: 56px;
+    border-radius: 24px 24px 200px 24px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .form__birthday {
+    gap: 32px;
+  }
+  .form__group {
+    width: 160px;
+    gap: 8px;
+  }
+  .form label {
+    font-size: 14px;
+    letter-spacing: 3.5px;
+  }
+  .form input {
+    width: 160px;
+    height: 72px;
+    font-size: 32px;
+    letter-spacing: 0.32px;
+  }
+  .submitArea {
+    width: 728px;
+    height: 96px;
+    margin: 0 !important;
+    justify-content: flex-end;
+  }
+  .submitArea__line {
+    width: calc(100% - 96px);
+  }
+  button {
+    width: 96px;
+    height: 96px;
+  }
+  .age {
+    font-size: 104px;
+    line-height: 110%; /* 114.4px */
+    letter-spacing: -2.08px;
+  }
 }/*# sourceMappingURL=main.css.map */

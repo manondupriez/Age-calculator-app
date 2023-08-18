@@ -1,5 +1,13 @@
 .form {
 
+    &__birthday {
+        gap: 16px;
+    }
+
+    &__group {
+        gap: 4px;
+    }
+
     label {
         color: $smokeyGrey;
         font-size: 12px;
@@ -28,14 +36,6 @@
             border: 1px solid $purple;
             caret-color: $purple;
         }
-    }
-
-    &__group {
-        gap: 4px;
-    }
-
-    &__birthday {
-        gap: 16px;
     }
 
     .submitArea {

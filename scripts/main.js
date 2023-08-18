@@ -1,0 +1,2 @@
+$submitBtnIcon = document.getElementById('arrowDownIcon');
+
