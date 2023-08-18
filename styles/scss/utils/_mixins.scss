@@ -1,0 +1,23 @@
+// TYPOGRAPHY
+
+@mixin headingL {
+    font-size: 104px;
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: -2%;
+    line-height: 110%;
+}
+
+@mixin headingM {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1%;
+    line-height: auto;
+}
+
+@mixin headingS {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 25%;
+    line-height: auto;
+}

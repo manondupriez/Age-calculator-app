@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basics -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Site -->
+    <title>Age calculator app</title>
+    <meta name="description" content="">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="main">
+        <div class="birthday">
+            <form action="" method="GET" class="form">
+                <div class="form__birthday">
+                    <div class="form__group birthday__day">
+                        <label for="dayInput">Day</label><br>
+                        <input type="text" name="day" id="dayInput" required placeholder="DD">
+                    </div>
+                    <div class="form__group birthday__month">
+                        <label for="monthInput">Month</label><br>
+                        <input type="text" name="month" id="monthInput" required placeholder="MM">
+                    </div>
+                    <div class="form__group birthday__year">
+                        <label for="yearInput">Year</label><br>
+                        <input type="text" name="year" id="yearInput" required placeholder="YYYY">
+                    </div>
+                </div>
+                <div class="submitArea">
+                    <span class="submitArea__line"></span>
+                    <button type="submit" aria-label="Submit">
+                        <span aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 24" fill="none">
+                                <path d="M0.5 12.0103C4.5 11.8287 12.5 13.9723 12.5 24" stroke="white" stroke-width="2"/>
+                                <path d="M12.5 24V0" stroke="white" stroke-width="2"/>
+                                <path d="M24.5 12.0103C20.5 11.8287 12.5 13.9723 12.5 24" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <span class="submitArea__line"></span>
+                </div>
+            </form>
+        </div>
+        <div class="age">
+            <div class="age__area age__area--years">
+                <span class="userValue userValue__years">--</span> years
+            </div>
+            <div class="age__area age__area--months">
+                <span class="userValue userValue__months">--</span> months
+            </div>
+            <div class="age__area age__area--days">
+                <span class="userValue userValue__days">--</span> days
+            </div>
+        </div>
+    </main>
+    <noscript>
+        JavaScript is disabled. The site may not work properly.
+    </noscript>
+    <!-- Bootstrap JavaScript-->
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript-->
+    <script src="scripts/main.js"></script>
+</body>
+</html>
