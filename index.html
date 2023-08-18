@@ -23,26 +23,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="main">
+    <main class="main overflow-hidden">
         <div class="birthday">
             <form action="" method="GET" class="form">
-                <div class="form__birthday">
-                    <div class="form__group birthday__day">
+                <div class="form__birthday d-flex justify-content-center align-items-center text-uppercase">
+                    <div class="form__group birthday__day d-flex flex-column align-items-start">
                         <label for="dayInput">Day</label><br>
-                        <input type="text" name="day" id="dayInput" required placeholder="DD">
+                        <input type="text" name="day" id="dayInput" placeholder="DD">
                     </div>
-                    <div class="form__group birthday__month">
+                    <div class="form__group birthday__month d-flex flex-column align-items-start">
                         <label for="monthInput">Month</label><br>
                         <input type="text" name="month" id="monthInput" required placeholder="MM">
                     </div>
-                    <div class="form__group birthday__year">
+                    <div class="form__group birthday__year d-flex flex-column align-items-start">
                         <label for="yearInput">Year</label><br>
                         <input type="text" name="year" id="yearInput" required placeholder="YYYY">
                     </div>
                 </div>
-                <div class="submitArea">
+                <div class="submitArea d-flex justify-content-center align-items-center">
                     <span class="submitArea__line"></span>
-                    <button type="submit" aria-label="Submit">
+                    <button type="submit" aria-label="Submit" class="d-flex justify-content-center align-items-center">
                         <span aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 24" fill="none">
                                 <path d="M0.5 12.0103C4.5 11.8287 12.5 13.9723 12.5 24" stroke="white" stroke-width="2"/>
@@ -55,14 +55,14 @@
                 </div>
             </form>
         </div>
-        <div class="age">
-            <div class="age__area age__area--years">
+        <div class="age fst-italic">
+            <div class="age__area age__area--years d-flex justify-content-start align-items-center">
                 <span class="userValue userValue__years">--</span> years
             </div>
-            <div class="age__area age__area--months">
+            <div class="age__area age__area--months d-flex justify-content-start align-items-center">
                 <span class="userValue userValue__months">--</span> months
             </div>
-            <div class="age__area age__area--days">
+            <div class="age__area age__area--days d-flex justify-content-start align-items-center">
                 <span class="userValue userValue__days">--</span> days
             </div>
         </div>

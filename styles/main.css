@@ -1,1 +1,88 @@
-/*# sourceMappingURL=main.css.map */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 88px 16px 238px;
+  background-color: hsl(0, 0%, 86%);
+  font-family: "Poppins", sans-serif;
+}
+
+button {
+  width: 64px;
+  height: 64px;
+  border: none;
+  background-color: hsl(259, 100%, 65%);
+  border-radius: 50%;
+  gap: 8px;
+}
+button:hover {
+  background-color: hsl(0, 0%, 8%);
+}
+
+.submitArea__line {
+  content: "";
+  width: 115px;
+  height: 1px;
+  background-color: hsl(0, 0%, 86%);
+}
+
+.main {
+  width: 343px;
+  margin: auto;
+  height: 486px;
+  padding: 48px 24px;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 24px 24px 100px 24px;
+}
+
+.age {
+  color: hsl(0, 0%, 8%);
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 110%; /* 61.6px */
+  letter-spacing: -1.12px;
+}
+.age__area {
+  gap: 8px;
+}
+
+.userValue {
+  color: hsl(259, 100%, 65%);
+}
+
+.form label {
+  color: hsl(0, 1%, 44%);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.form input {
+  width: 88px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border-radius: 8px;
+  border: 1px solid hsl(0, 0%, 86%);
+}
+.form input:focus, .form input:active {
+  outline: none;
+  border: 1px solid hsl(259, 100%, 65%);
+  caret-color: hsl(259, 100%, 65%);
+}
+.form__group {
+  gap: 4px;
+}
+.form__birthday {
+  gap: 16px;
+}
+.form .submitArea {
+  margin: 32px 0;
+}/*# sourceMappingURL=main.css.map */

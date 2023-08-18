@@ -1,0 +1,23 @@
+button {
+    width: 64px;
+    height: 64px;
+    border: none;
+    background-color: $purple;
+    border-radius: 50%;
+    gap: 8px;
+
+    &:hover {
+        background-color: $offBlack;
+    }
+}
+
+.submitArea {
+
+    &__line {
+        content: '';
+        width: 115px;
+        height: 1px;
+        background-color: $lightGrey;
+    }
+
+}
