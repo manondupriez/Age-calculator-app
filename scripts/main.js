@@ -46,92 +46,98 @@ window.addEventListener('resize', resizeSubmitButtonIcon);
 // LOGIC PART
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Targets form
+    
     const form = document.getElementById('form');
 
-    // Targets the form labels and inputs and their error messages
-    const formElements = 
-    [
-        { 
-            label: document.getElementById('dayLabel'),
-            input: document.getElementById('dayInput'),
-            hasError: false,
-            missingFieldErrorMessage: 'This field is required',
-            invalidEntryErrorMessage: 'Must be a valid day'
-        },
-        { 
-            label: document.getElementById('monthLabel'),
-            input: document.getElementById('monthInput'),
-            hasError: false,
-            missingFieldErrorMessage: 'This field is required',
-            invalidEntryErrorMessage: 'Must be a valid month'
+    const formElements = [
+        {
+            id: 'dayInput',
+            label: 'dayLabel',
+            errorMessages: {
+                missingField: 'This field is required',
+                invalidEntry: 'Must be a valid day'
+            },
+            isValid: value => !isNaN(value) && value >= 1 && value <= 31
         },
         {
-            label: document.getElementById('yearLabel'),
-            input: document.getElementById('yearInput'),
-            hasError: false,
-            missingFieldErrorMessage: 'This field is required',
-            invalidEntryErrorMessage: 'Must be in the past'
+            id: 'monthInput',
+            label: 'monthLabel',
+            errorMessages: {
+                missingField: 'This field is required',
+                invalidEntry: 'Must be a valid month'
+            },
+            isValid: value => !isNaN(value) && value >= 1 && value <= 12
+        },
+        {
+            id: 'yearInput',
+            label: 'yearLabel',
+            errorMessages: {
+                missingField: 'This field is required',
+                invalidEntry: 'Must be a valid year',
+                invalidEntry2: 'Must be in the past'
+            },
+            isValid: value => !isNaN(value) && value <= 2023
         }
     ];
 
-    // Verifies if all the form fields are completed
-    const areFieldsCompleted = () => {
+    const validateField = (element) => {
+        const input = element.input;
+        const label = element.labelElement;
+        const errorMessages = element.errorMessages;
 
-        formElements.forEach(element => {
+        input.addEventListener('blur', () => {
+            const inputValue = input.value.trim();
+            const errorMessage = element.isValid(inputValue) ? '' : errorMessages.invalidEntry;
 
-            element.input.addEventListener('blur', () => {
-                if (element.input.value.trim() === '') {
-
-                    element.hasError = true;
-                    element.label.classList.add('labelInvalid');
-                    element.input.classList.add('inputInvalid');
-                    element.input.nextElementSibling.classList.remove('d-none');
-                    element.input.nextElementSibling.textContent = element.missingFieldErrorMessage;
-
+            if (inputValue === '') {
+                label.classList.add('labelInvalid');
+                input.classList.add('inputInvalid');
+                input.nextElementSibling.classList.remove('d-none');
+                input.nextElementSibling.textContent = errorMessages.missingField;
+            } else {
+                if (errorMessage) {
+                    label.classList.add('labelInvalid');
+                    input.classList.add('inputInvalid');
+                    input.nextElementSibling.classList.remove('d-none');
+                    input.nextElementSibling.textContent = errorMessage;
                 } else {
-
-                    element.hasError = false;
-                    element.label.classList.remove('labelInvalid');
-                    element.input.classList.remove('inputInvalid');
-                    element.input.nextElementSibling.classList.add('d-none');
-                    element.input.nextElementSibling.textContent = '';
-
+                    label.classList.remove('labelInvalid');
+                    input.classList.remove('inputInvalid');
+                    input.nextElementSibling.classList.add('d-none');
+                    input.nextElementSibling.textContent = '';
                 }
-            })
-
+            }
         });
-
     };
 
-    areFieldsCompleted();
+    formElements.forEach(element => {
+        element.input = document.getElementById(element.id);
+        element.labelElement = document.getElementById(element.label);
+        validateField(element);
+    });
 
     form.addEventListener('submit', event => {
-
         let hasErrors = false;
 
         formElements.forEach(element => {
+            const inputValue = element.input.value.trim();
 
-            // Returns an error if a field is missing and prrvent the form submission
-            if (element.input.value.trim() === '') {
-
+            if (inputValue === '' || !element.isValid(inputValue)) {
                 hasErrors = true;
-                element.hasError = true;
-                element.label.classList.add('labelInvalid');
+                element.labelElement.classList.add('labelInvalid');
                 element.input.classList.add('inputInvalid');
                 element.input.nextElementSibling.classList.remove('d-none');
-                element.input.nextElementSibling.textContent = element.missingFieldErrorMessage;
-
-            } else if (element.hasError) {
-
-                hasErrors = true;
-
+                element.input.nextElementSibling.textContent = inputValue === '' ? element.errorMessages.missingField : element.errorMessages.invalidEntry;
+            } else {
+                element.labelElement.classList.remove('labelInvalid');
+                element.input.classList.remove('inputInvalid');
+                element.input.nextElementSibling.classList.add('d-none');
+                element.input.nextElementSibling.textContent = '';
             }
         });
 
         if (hasErrors) {
             event.preventDefault();
         }
-
     });
 });
