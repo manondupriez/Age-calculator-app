@@ -94,6 +94,14 @@ button:hover {
   margin: 32px 0;
 }
 
+.labelInvalid {
+  color: #ff5757 !important;
+}
+
+.inputInvalid {
+  border: 1px solid #ff5757 !important;
+}
+
 @media screen and (min-width: 900px) {
   body {
     margin: 0;

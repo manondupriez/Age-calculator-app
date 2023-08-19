@@ -36,6 +36,7 @@
             border: 1px solid $purple;
             caret-color: $purple;
         }
+
     }
 
     ::placeholder {
@@ -47,4 +48,12 @@
         margin: 32px 0;
     }
     
+}
+
+.labelInvalid {
+    color: $lightRed !important;
+}
+
+.inputInvalid {
+    border: 1px solid $lightRed !important;
 }
