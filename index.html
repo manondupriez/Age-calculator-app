@@ -24,13 +24,13 @@
 </head>
 <body>
     <main class="main">
-        <div class="birthday">
+        <section class="birthday">
             <form action="" method="GET" class="form">
                 <div class="form__birthday d-flex justify-content-center align-items-center text-uppercase">
 
                     <div class="form__group birthday__day position-relative d-flex flex-column align-items-start">
 
-                        <label for="dayInput">Day</label><br>
+                        <label for="dayInput" id="dayLabel">Day</label><br>
                         <input type="text" name="day" id="dayInput" placeholder="DD">
 
                         <!-- Error messages -->
@@ -42,7 +42,7 @@
 
                     <div class="form__group birthday__month position-relative d-flex flex-column align-items-start">
 
-                        <label for="monthInput">Month</label><br>
+                        <label for="monthInput" id="monthLabel">Month</label><br>
                         <input type="text" name="month" id="monthInput" placeholder="MM">
 
                         <!-- Error messages -->
@@ -52,7 +52,7 @@
 
                     <div class="form__group birthday__year position-relative d-flex flex-column align-items-start">
 
-                        <label for="yearInput">Year</label><br>
+                        <label for="yearInput" id="yearLabel">Year</label><br>
                         <input type="text" name="year" id="yearInput" placeholder="YYYY">
 
                         <!-- Error messages-->
@@ -62,8 +62,10 @@
 
                 </div>
                 <div class="submitArea d-flex justify-content-center align-items-center">
+
                     <span class="submitArea__line"></span>
-                    <button type="submit" aria-label="Submit" class="d-flex justify-content-center align-items-center">
+
+                    <button type="submit" aria-label="Submit" id="submitButton" class="d-flex justify-content-center align-items-center">
                         <span aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 24" fill="none" id="arrowDownIcon">
                                 <path d="M0.5 12.0103C4.5 11.8287 12.5 13.9723 12.5 24" stroke="white" stroke-width="1"/>
@@ -72,21 +74,27 @@
                             </svg>
                         </span>
                     </button>
+
                     <span id="line" class="submitArea__line"></span>
+
                 </div>
             </form>
-        </div>
-        <div class="age fst-italic">
+        </section>
+        <section class="age fst-italic">
+
             <div class="age__area age__area--years d-flex justify-content-start align-items-center">
-                <span class="userValue userValue__years">--</span> years
+                <span id="userYears" class="userValue userValue__years">--</span> years
             </div>
+
             <div class="age__area age__area--months d-flex justify-content-start align-items-center">
-                <span class="userValue userValue__months">--</span> months
+                <span id="userMonths" class="userValue userValue__months">--</span> months
             </div>
+
             <div class="age__area age__area--days d-flex justify-content-start align-items-center">
-                <span class="userValue userValue__days">--</span> days
+                <span id="userDays" class="userValue userValue__days">--</span> days
             </div>
-        </div>
+
+        </section>
     </main>
     <noscript>
         JavaScript is disabled. The site may not work properly.
