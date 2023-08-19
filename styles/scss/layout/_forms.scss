@@ -38,6 +38,11 @@
         }
     }
 
+    ::placeholder {
+        color: $offBlack;
+        opacity: .5;
+    }
+
     .submitArea {
         margin: 32px 0;
     }

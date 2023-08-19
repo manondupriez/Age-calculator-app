@@ -5,7 +5,7 @@
 body {
   overflow: hidden;
   padding: 88px 16px 238px;
-  background-color: hsl(0, 0%, 86%);
+  background-color: #dbdbdb;
   font-family: "Poppins", sans-serif;
 }
 
@@ -16,19 +16,19 @@ body {
   content: "";
   width: 115px;
   height: 1px;
-  background-color: hsl(0, 0%, 86%);
+  background-color: #dbdbdb;
 }
 
 button {
   width: 64px;
   height: 64px;
   gap: 8px;
-  background-color: hsl(259, 100%, 65%);
+  background-color: #854dff;
   border: none;
   border-radius: 50%;
 }
 button:hover {
-  background-color: hsl(0, 0%, 8%);
+  background-color: #141414;
 }
 
 .main {
@@ -36,12 +36,12 @@ button:hover {
   height: 486px;
   margin: auto;
   padding: 48px 24px;
-  background-color: hsl(0, 0%, 100%);
+  background-color: #ffffff;
   border-radius: 24px 24px 100px 24px;
 }
 
 .age {
-  color: hsl(0, 0%, 8%);
+  color: #141414;
   font-size: 56px;
   font-weight: 800;
   line-height: 110%; /* 61.6px */
@@ -51,7 +51,7 @@ button:hover {
   gap: 8px;
 }
 .age .userValue {
-  color: hsl(259, 100%, 65%);
+  color: #854dff;
 }
 
 .form__birthday {
@@ -61,7 +61,7 @@ button:hover {
   gap: 4px;
 }
 .form label {
-  color: hsl(0, 1%, 44%);
+  color: #716f6f;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -79,12 +79,16 @@ button:hover {
   font-weight: 700;
   letter-spacing: 0.2px;
   border-radius: 8px;
-  border: 1px solid hsl(0, 0%, 86%);
+  border: 1px solid #dbdbdb;
 }
 .form input:focus, .form input:active {
   outline: none;
-  border: 1px solid hsl(259, 100%, 65%);
-  caret-color: hsl(259, 100%, 65%);
+  border: 1px solid #854dff;
+  caret-color: #854dff;
+}
+.form ::placeholder {
+  color: #141414;
+  opacity: 0.5;
 }
 .form .submitArea {
   margin: 32px 0;
