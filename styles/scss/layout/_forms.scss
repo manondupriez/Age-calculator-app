@@ -47,13 +47,22 @@
     .submitArea {
         margin: 32px 0;
     }
+
+    .labelInvalid {
+        color: $lightRed !important;
+    }
+    
+    .inputInvalid {
+        border: 1px solid $lightRed !important;
+    }
+
+    .errorMsg {
+        font-size: 8.8px;
+        font-weight: 400;
+        color: $lightRed;
+        text-transform: none;
+        top: calc(100% + 8px);
+    }
     
 }
 
-.labelInvalid {
-    color: $lightRed !important;
-}
-
-.inputInvalid {
-    border: 1px solid $lightRed !important;
-}

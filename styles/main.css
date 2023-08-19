@@ -93,13 +93,18 @@ button:hover {
 .form .submitArea {
   margin: 32px 0;
 }
-
-.labelInvalid {
+.form .labelInvalid {
   color: #ff5757 !important;
 }
-
-.inputInvalid {
+.form .inputInvalid {
   border: 1px solid #ff5757 !important;
+}
+.form .errorMsg {
+  font-size: 8.8px;
+  font-weight: 400;
+  color: #ff5757;
+  text-transform: none;
+  top: calc(100% + 8px);
 }
 
 @media screen and (min-width: 900px) {
@@ -138,6 +143,13 @@ button:hover {
     height: 72px;
     font-size: 32px;
     letter-spacing: 0.32px;
+  }
+  .form .errorMsg {
+    font-size: 14px;
+    font-weight: 400;
+    color: #ff5757;
+    text-transform: none;
+    top: calc(100% + 8px);
   }
   .submitArea {
     width: 728px;

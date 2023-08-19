@@ -41,6 +41,14 @@
             font-size: 32px;
             letter-spacing: .32px;
         }
+
+        .errorMsg {
+            font-size: 14px;
+            font-weight: 400;
+            color: $lightRed;
+            text-transform: none;
+            top: calc(100% + 8px);
+        }
     }
 
     .submitArea {

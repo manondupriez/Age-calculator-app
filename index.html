@@ -27,18 +27,39 @@
         <div class="birthday">
             <form action="" method="GET" class="form">
                 <div class="form__birthday d-flex justify-content-center align-items-center text-uppercase">
-                    <div class="form__group birthday__day d-flex flex-column align-items-start">
+
+                    <div class="form__group birthday__day position-relative d-flex flex-column align-items-start">
+
                         <label for="dayInput">Day</label><br>
                         <input type="text" name="day" id="dayInput" placeholder="DD">
+
+                        <!-- Error messages -->
+                        <p class="errorMsg errorMsg__fieldRequired position-absolute left-0 m-0 fst-italic d-none">This field is required</p>
+                        <p class="errorMsg errorMsg__invalidEntry errorMsg__invalidEntry--day position-absolute left-0 m-0 fst-italic d-none">Must be a valid day</p>
+
+                        <p class="errorMsg errorMsg__invalidEntry errorMsg__invalidEntry--date position-absolute left-0 m-0 fst-italic d-none">Must be a valid date</p>
                     </div>
-                    <div class="form__group birthday__month d-flex flex-column align-items-start">
+
+                    <div class="form__group birthday__month position-relative d-flex flex-column align-items-start">
+
                         <label for="monthInput">Month</label><br>
                         <input type="text" name="month" id="monthInput" placeholder="MM">
+
+                        <!-- Error messages -->
+                        <p class="errorMsg errorMsg__fieldRequired position-absolute left-0 m-0 fst-italic d-none">This field is required</p>
+                        <p class="errorMsg errorMsg__invalidEntry errorMsg__invalidEntry--month position-absolute left-0 m-0 fst-italic d-none">Must be a valid month</p>
                     </div>
-                    <div class="form__group birthday__year d-flex flex-column align-items-start">
+
+                    <div class="form__group birthday__year position-relative d-flex flex-column align-items-start">
+
                         <label for="yearInput">Year</label><br>
                         <input type="text" name="year" id="yearInput" placeholder="YYYY">
+
+                        <!-- Error messages-->
+                        <p class="errorMsg errorMsg__fieldRequired position-absolute left-0 m-0 fst-italic d-none">This field is required</p>
+                        <p class="errorMsg errorMsg__invalidEntry errorMsg__invalidEntry--year position-absolute left-0 m-0 fst-italic d-none">Must be in the past</p>
                     </div>
+
                 </div>
                 <div class="submitArea d-flex justify-content-center align-items-center">
                     <span class="submitArea__line"></span>
