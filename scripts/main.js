@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isLeapYear = (year) => {
         return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
-    }
+    };
 
     // Checks that the entire date is valid
     const validateBirthdayDate = () => {
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(element.label).classList.add('labelInvalid');
         document.getElementById(element.id).classList.add('inputInvalid');
 
-    }
+    };
 
     const removeErrorDisplay = (element) => {
 
@@ -186,12 +186,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(element.label).classList.remove('labelInvalid');
         document.getElementById(element.id).classList.remove('inputInvalid');
 
-    }
+    };
 
     const updateErrorMessage = (element) => {
 
         // Shows error messages
-        document.getElementById(element.id).nextElementSibling.classList.remove('d-none')
+        document.getElementById(element.id).nextElementSibling.classList.remove('d-none');
 
             // If field is missing
         if (document.getElementById(element.id).value.trim() === '') {
@@ -223,9 +223,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('dayInput').nextElementSibling.textContent = 'Must be a valid date';
 
-        }
+        };
 
-    }
+    };
 
     const removeErrorMessage = (element) => {
 
@@ -233,19 +233,57 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(element.id).nextElementSibling.classList.add('d-none');
         document.getElementById(element.id).nextElementSibling.textContent = '';
 
-    }
+    };
 
         // ********** AGE CALCULATION **********
 
+    const calcUserAge = () => {
+
+        // Targets values
+        const dayInput = document.getElementById('dayInput').value.trim();
+        const monthInput = document.getElementById('monthInput').value.trim();
+        const yearInput = document.getElementById('yearInput').value.trim();
     
+        // Targets the whole birthday date
+        const birthday = new Date(yearInput, monthInput - 1, dayInput);
+    
+        // Calculates the age in years, months and days
+        let years = today.getFullYear() - birthday.getFullYear();
+        let months = today.getMonth() - birthday.getMonth();
+        let days = today.getDate() - birthday.getDate();
+    
+        // Handle cases where month or day of birth is later than current date
+        if (months < 0 || (months === 0 && days < 0)) {
+            years--;
+            months += 12;
+        }
+    
+        if (days < 0) {
+            const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, birthday.getDate());
+            days = Math.floor((today - lastMonth) / (1000 * 60 * 60 * 24));
+            months--;
+    
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+        }
+    
+        console.log(`Vous avez ${years} ans, ${months} mois et ${days} jours.`);
+        
+    };
 
         // ********** FORM SUBMISSION **********
 
-    form.addEventListener('submit', event => {
+    form.addEventListener('submit', (event) => {
+
+        event.preventDefault();
+
+    })
+
+    document.getElementById('submitButton').addEventListener('click', event => {
 
         if (!canSubmit) {
-
-            event.preventDefault();
 
             formElements.forEach(element => {
 
@@ -253,6 +291,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateErrorMessage(element);
 
             });
+
+        } else {
+
+            calcUserAge();
+            
         }
 
     });
