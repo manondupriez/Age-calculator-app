@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } else {
 
+            canSubmit = false;
             return false;
 
         }
