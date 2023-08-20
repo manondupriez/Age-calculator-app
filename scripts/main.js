@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentYear = today.getFullYear();
 
     const form = document.getElementById('form');
+    let canSubmit = false;
     const formElements = [
         {
             id: 'dayInput',
@@ -58,9 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMessages: {
                 missingField: 'This field is required',
                 invalidEntry: 'Must be a valid day',
-                invalidEntry2: 'Must be a valid date'
             },
-            isValid: value => !isNaN(value) && value >= 1 && value <= 31
+            valid: false,
+            isValid: value => !isNaN(value) && value !== '' && value >= 1 && value <= 31
         },
         {
             id: 'monthInput',
@@ -69,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 missingField: 'This field is required',
                 invalidEntry: 'Must be a valid month'
             },
-            isValid: value => !isNaN(value) && value >= 1 && value <= 12
+            valid: false,
+            isValid: value => !isNaN(value) && value !== '' && value >= 1 && value <= 12
         },
         {
             id: 'yearInput',
@@ -79,62 +81,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 invalidEntry: 'Must be a valid year',
                 invalidEntry2: 'Must be in the past'
             },
-            isValid: value => !isNaN(value) && value <= currentYear
+            valid: false,
+            isValid: value => !isNaN(value) && value !== '' && value <= currentYear
         }
     ];
 
-    const validateField = (element) => {
+    formElements.forEach(element => {
 
-        const input = element.input;
-        const label = element.labelElement;
-        const errorMessages = element.errorMessages;
+        document.getElementById(element.id).addEventListener('blur', () => {
 
-        input.addEventListener('blur', () => {
+            if (element.isValid(document.getElementById(element.id).value.trim())) {
+                
+                element.valid = true;
+                let AllFieldsAreValid = true;
 
-            const inputValue = input.value.trim();
+                formElements.forEach(element => {
+                    AllFieldsAreValid &= element.valid;
+                });
 
-            if (inputValue === '') {
+                if (AllFieldsAreValid) {
+                    validateBirthdayDate();
+                }
 
-                label.classList.add('labelInvalid');
-                input.classList.add('inputInvalid');
-                input.nextElementSibling.classList.remove('d-none');
-                input.nextElementSibling.textContent = errorMessages.missingField;
-                return;
-
-            }
-
-            const errorMessage = element.isValid(inputValue) ? '' : errorMessages.invalidEntry;
-
-            if (element.id === 'yearInput' && inputValue > currentYear) {
-
-                label.classList.add('labelInvalid');
-                input.classList.add('inputInvalid');
-                input.nextElementSibling.classList.remove('d-none');
-                input.nextElementSibling.textContent = errorMessages.invalidEntry2;
-
-            } else if (errorMessage) {
-
-                label.classList.add('labelInvalid');
-                input.classList.add('inputInvalid');
-                input.nextElementSibling.classList.remove('d-none');
-                input.nextElementSibling.textContent = errorMessage;
+                // Update l'affichage
+                document.getElementById(element.label).classList.remove('labelInvalid');
+                document.getElementById(element.id).classList.remove('inputInvalid');
 
             } else {
 
-                label.classList.remove('labelInvalid');
-                input.classList.remove('inputInvalid');
-                input.nextElementSibling.classList.add('d-none');
-                input.nextElementSibling.textContent = '';
+                canSubmit = false;
+                element.valid = false;
+
+                // Update l'affichage
+                document.getElementById(element.label).classList.add('labelInvalid');
+                document.getElementById(element.id).classList.add('inputInvalid');
+
+                // Afficher message d'erreur
+                
 
             }
-        });
-    };
 
-    formElements.forEach(element => {
-
-        element.input = document.getElementById(element.id);
-        element.labelElement = document.getElementById(element.label);
-        validateField(element);
+        })
 
     });
 
@@ -147,75 +134,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const dayInput = document.getElementById('dayInput').value.trim();
         const monthInput = document.getElementById('monthInput').value.trim();
         const yearInput = document.getElementById('yearInput').value.trim();
-        const birthdayDate = new Date(yearInput, monthInput - 1, dayInput);
 
         const maxDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         if (isLeapYear(yearInput)) {
-        maxDaysInMonth[1] = 29;
+            maxDaysInMonth[1] = 29;
         }
 
-        if (dayInput > maxDaysInMonth[monthInput - 1] || (birthdayDate > today)) {
-            return false;
-        } else {
-            return true;
+        const birthdayDate = new Date(yearInput, monthInput - 1, dayInput);
+    
+        if (dayInput <= maxDaysInMonth[monthInput - 1] && (birthdayDate <= today)) {
+
+            canSubmit = true;
+
         }
 
     };
 
     form.addEventListener('submit', event => {
 
-        let hasErrors = false;
-    
-        formElements.forEach(element => {
-
-            const inputValue = element.input.value.trim();
-
-            if (element.id === 'yearInput' && inputValue > currentYear) {
-
-                hasErrors = true;
-                element.labelElement.classList.add('labelInvalid');
-                element.input.classList.add('inputInvalid');
-                element.input.nextElementSibling.classList.remove('d-none');
-                element.input.nextElementSibling.textContent = element.errorMessages.invalidEntry2;
-
-            } else if (inputValue === '' || !element.isValid(inputValue)) {
-
-                hasErrors = true;
-                element.labelElement.classList.add('labelInvalid');
-                element.input.classList.add('inputInvalid');
-                element.input.nextElementSibling.classList.remove('d-none');
-                element.input.nextElementSibling.textContent = inputValue === '' ? element.errorMessages.missingField : element.errorMessages.invalidEntry;
-
-            } else {
-
-                element.labelElement.classList.remove('labelInvalid');
-                element.input.classList.remove('inputInvalid');
-                element.input.nextElementSibling.classList.add('d-none');
-                element.input.nextElementSibling.textContent = '';
-
-            }
-    
-        });
-
-        if (false === validateBirthdayDate()) {
-
-            hasErrors = true;
-
-            document.getElementById('dayLabel').classList.add('labelInvalid');
-            document.getElementById('dayInput').classList.add('inputInvalid');
-            document.getElementById('monthLabel').classList.add('labelInvalid');
-            document.getElementById('monthInput').classList.add('inputInvalid');
-            document.getElementById('yearLabel').classList.add('labelInvalid');
-            document.getElementById('yearInput').classList.add('inputInvalid');
-            document.getElementById('dayInput').nextElementSibling.classList.remove('d-none');
-            document.getElementById('dayInput').nextElementSibling.textContent = 'Must be a valid date';
-
-        }
-    
-        if (hasErrors) {
-
+        if (!canSubmit) {
             event.preventDefault();
-
         }
 
     });
