@@ -46,7 +46,7 @@ window.addEventListener('resize', resizeSubmitButtonIcon);
 // LOGIC PART
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     const form = document.getElementById('form');
 
     const formElements = [
@@ -81,58 +81,73 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const validateField = (element) => {
+
         const input = element.input;
         const label = element.labelElement;
         const errorMessages = element.errorMessages;
 
         input.addEventListener('blur', () => {
+
             const inputValue = input.value.trim();
-            const errorMessage = element.isValid(inputValue) ? '' : errorMessages.invalidEntry;
 
             if (inputValue === '') {
+
                 label.classList.add('labelInvalid');
                 input.classList.add('inputInvalid');
                 input.nextElementSibling.classList.remove('d-none');
                 input.nextElementSibling.textContent = errorMessages.missingField;
+                return;
+            }
+
+            const errorMessage = element.isValid(inputValue) ? '' : errorMessages.invalidEntry;
+
+            if (errorMessage) {
+                label.classList.add('labelInvalid');
+                input.classList.add('inputInvalid');
+                input.nextElementSibling.classList.remove('d-none');
+                input.nextElementSibling.textContent = errorMessage;
+
             } else {
-                if (errorMessage) {
-                    label.classList.add('labelInvalid');
-                    input.classList.add('inputInvalid');
-                    input.nextElementSibling.classList.remove('d-none');
-                    input.nextElementSibling.textContent = errorMessage;
-                } else {
-                    label.classList.remove('labelInvalid');
-                    input.classList.remove('inputInvalid');
-                    input.nextElementSibling.classList.add('d-none');
-                    input.nextElementSibling.textContent = '';
-                }
+
+                label.classList.remove('labelInvalid');
+                input.classList.remove('inputInvalid');
+                input.nextElementSibling.classList.add('d-none');
+                input.nextElementSibling.textContent = '';
             }
         });
     };
 
     formElements.forEach(element => {
+
         element.input = document.getElementById(element.id);
         element.labelElement = document.getElementById(element.label);
         validateField(element);
+
     });
 
     form.addEventListener('submit', event => {
+
         let hasErrors = false;
 
         formElements.forEach(element => {
+
             const inputValue = element.input.value.trim();
 
             if (inputValue === '' || !element.isValid(inputValue)) {
+
                 hasErrors = true;
                 element.labelElement.classList.add('labelInvalid');
                 element.input.classList.add('inputInvalid');
                 element.input.nextElementSibling.classList.remove('d-none');
                 element.input.nextElementSibling.textContent = inputValue === '' ? element.errorMessages.missingField : element.errorMessages.invalidEntry;
+
             } else {
+
                 element.labelElement.classList.remove('labelInvalid');
                 element.input.classList.remove('inputInvalid');
                 element.input.nextElementSibling.classList.add('d-none');
                 element.input.nextElementSibling.textContent = '';
+
             }
         });
 
@@ -140,4 +155,5 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
         }
     });
+    
 });
