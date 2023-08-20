@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     formElements.forEach(element => {
 
-        document.getElementById(element.id).addEventListener('blur', () => {
+        document.getElementById(element.id).addEventListener('input', () => {
 
             if (element.isValid(document.getElementById(element.id).value.trim())) {
                 
@@ -103,21 +103,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     validateBirthdayDate();
                 }
 
-                // Update l'affichage
-                document.getElementById(element.label).classList.remove('labelInvalid');
-                document.getElementById(element.id).classList.remove('inputInvalid');
+                // Updates display
+                removeErrorDisplay(element);
+
+                // Removes error messages
+                removeErrorMessage(element);
 
             } else {
 
                 canSubmit = false;
                 element.valid = false;
 
-                // Update l'affichage
-                document.getElementById(element.label).classList.add('labelInvalid');
-                document.getElementById(element.id).classList.add('inputInvalid');
+                // Calls a function which updates display if invalid
+                addErrorDisplay(element);
 
-                // Afficher message d'erreur
-                
+                // Calls a function which updates error messages
+                updateErrorMessage(element);
 
             }
 
@@ -144,16 +145,95 @@ document.addEventListener('DOMContentLoaded', () => {
     
         if (dayInput <= maxDaysInMonth[monthInput - 1] && (birthdayDate <= today)) {
 
+            formElements.forEach(element => {
+                removeErrorDisplay(element);
+            });
+
             canSubmit = true;
+            return true;
+
+        } else {
+
+            return false;
 
         }
 
     };
 
+    const addErrorDisplay = (element) => {
+
+        // Add CSS classes with invalid styles
+        document.getElementById(element.label).classList.add('labelInvalid');
+        document.getElementById(element.id).classList.add('inputInvalid');
+
+    }
+
+    const removeErrorDisplay = (element) => {
+
+        // Remove CSS classes with invalid styles
+        document.getElementById(element.label).classList.remove('labelInvalid');
+        document.getElementById(element.id).classList.remove('inputInvalid');
+
+    }
+
+    const updateErrorMessage = (element) => {
+
+        // Shows error messages
+        document.getElementById(element.id).nextElementSibling.classList.remove('d-none')
+
+            // If field is missing
+        if (document.getElementById(element.id).value.trim() === '') {
+
+            document.getElementById(element.id).nextElementSibling.textContent = element.errorMessages.missingField;
+
+            // If entry is not a number
+        } else if (isNaN(document.getElementById(element.id).value.trim())) {
+
+            document.getElementById(element.id).nextElementSibling.textContent = element.errorMessages.invalidEntry;
+
+            // If the day is under 1 or over 31
+        } else if (element.id === 'dayInput' && (document.getElementById(element.id).value.trim() < 1 || document.getElementById(element.id).value.trim() > 31)) {
+
+            document.getElementById(element.id).nextElementSibling.textContent = element.errorMessages.invalidEntry;
+
+            // If the month is under 1 or over 12
+        } else if (element.id === 'monthInput' && (document.getElementById(element.id).value.trim() < 1 || document.getElementById(element.id).value.trim() > 12)) {
+
+            document.getElementById(element.id).nextElementSibling.textContent = element.errorMessages.invalidEntry;
+
+            // If the year value is over the current year
+        } else if (element.id === 'yearInput' && document.getElementById(element.id).value.trim() > currentYear) {
+
+            document.getElementById(element.id).nextElementSibling.textContent = element.errorMessages.invalidEntry2;
+
+            // If all the fields are OK but the whole date is wrong
+        } else if (false === validateBirthdayDate()) {
+
+            document.getElementById('dayInput').nextElementSibling.textContent = 'Must be a valid date';
+
+        }
+
+    }
+
+    const removeErrorMessage = (element) => {
+
+        document.getElementById(element.id).nextElementSibling.classList.add('d-none');
+        document.getElementById(element.id).nextElementSibling.textContent = '';
+
+    }
+
     form.addEventListener('submit', event => {
 
         if (!canSubmit) {
+
             event.preventDefault();
+
+            formElements.forEach(element => {
+
+                addErrorDisplay(element);
+                updateErrorMessage(element);
+
+            });
         }
 
     });
