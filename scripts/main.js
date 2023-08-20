@@ -49,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById('form');
 
+    const today = new Date();
+    const actualYear = today.getFullYear();
+
     const formElements = [
         {
             id: 'dayInput',
@@ -76,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 invalidEntry: 'Must be a valid year',
                 invalidEntry2: 'Must be in the past'
             },
-            isValid: value => !isNaN(value) && value <= 2023
+            isValid: value => !isNaN(value) && value <= actualYear
         }
     ];
 
@@ -97,11 +100,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 input.nextElementSibling.classList.remove('d-none');
                 input.nextElementSibling.textContent = errorMessages.missingField;
                 return;
+
             }
 
             const errorMessage = element.isValid(inputValue) ? '' : errorMessages.invalidEntry;
 
-            if (errorMessage) {
+            if (element.id === 'yearInput' && inputValue > actualYear) {
+
+                label.classList.add('labelInvalid');
+                input.classList.add('inputInvalid');
+                input.nextElementSibling.classList.remove('d-none');
+                input.nextElementSibling.textContent = errorMessages.invalidEntry2;
+
+            } else if (errorMessage) {
+
                 label.classList.add('labelInvalid');
                 input.classList.add('inputInvalid');
                 input.nextElementSibling.classList.remove('d-none');
@@ -113,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 input.classList.remove('inputInvalid');
                 input.nextElementSibling.classList.add('d-none');
                 input.nextElementSibling.textContent = '';
+
             }
         });
     };
@@ -128,12 +141,20 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', event => {
 
         let hasErrors = false;
-
+    
         formElements.forEach(element => {
 
             const inputValue = element.input.value.trim();
 
-            if (inputValue === '' || !element.isValid(inputValue)) {
+            if (element.id === 'yearInput' && inputValue > actualYear) {
+
+                hasErrors = true;
+                element.labelElement.classList.add('labelInvalid');
+                element.input.classList.add('inputInvalid');
+                element.input.nextElementSibling.classList.remove('d-none');
+                element.input.nextElementSibling.textContent = element.errorMessages.invalidEntry2;
+
+            } else if (inputValue === '' || !element.isValid(inputValue)) {
 
                 hasErrors = true;
                 element.labelElement.classList.add('labelInvalid');
@@ -149,11 +170,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.input.nextElementSibling.textContent = '';
 
             }
-        });
-
-        if (hasErrors) {
-            event.preventDefault();
-        }
-    });
     
+        });
+    
+        if (hasErrors) {
+
+            event.preventDefault();
+
+        }
+
+    });
+
 });
