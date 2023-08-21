@@ -268,10 +268,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 months += 12;
             }
         }
-    
-        console.log(`Vous avez ${years} ans, ${months} mois et ${days} jours.`);
+
+        showUserAge(years, months, days);
         
     };
+
+    const showUserAge = (years, months, days) => {
+
+        // Targets the user display elements
+        const userYears = document.getElementById('userYears');
+        const userMonths = document.getElementById('userMonths');
+        const userDays = document.getElementById('userDays');
+
+        // Updates display
+        userYears.textContent = years;
+        userMonths.textContent = months;
+        userDays.textContent = days;
+
+    }
+
+    // Code display update function here
 
         // ********** FORM SUBMISSION **********
 
@@ -295,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
 
             calcUserAge();
-            
+
         }
 
     });
