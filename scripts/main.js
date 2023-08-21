@@ -287,8 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    // Code display update function here
-
         // ********** FORM SUBMISSION **********
 
     form.addEventListener('submit', (event) => {
