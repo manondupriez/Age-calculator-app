@@ -132,7 +132,6 @@ button:hover {
   }
   .form__group {
     width: 160px;
-    gap: 8px;
   }
   .form label {
     font-size: 14px;
