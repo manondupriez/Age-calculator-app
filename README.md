@@ -9,7 +9,6 @@ This is a solution to the [Age calculator app challenge on Frontend Mentor](http
   - [Overview](#overview)
     - [The challenge](#the-challenge)
     - [Screenshot](#screenshot)
-      - [Error states :](#error-states-)
     - [Links](#links)
   - [My process](#my-process)
     - [Built with](#built-with)
@@ -49,7 +48,7 @@ Valid state
 
 ![Valid state](images/desktop-valid.png)
 
-#### Error states :
+Error states :
 
 - Missing fields
 
@@ -65,8 +64,8 @@ Valid state
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Solution URL](https://your-solution-url.com)
+- [Live site URL](https://manondupriez.github.io/Age-calculator-app/)
 
 ## My process
 
@@ -87,8 +86,7 @@ I wanted to do the JavaScript part of this project by myself to practice form va
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [JavaScript Date() Object](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) - This helped me to better understand the JavaScript Date() object.
 
 ## Author
 
