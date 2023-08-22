@@ -42,7 +42,7 @@ Desktop
 
 Mobile
 
-![Mobile](images/mobile.png)
+![Mobile](images/mobile.jpeg)
 
 Valid state
 
@@ -64,7 +64,7 @@ Error states :
 
 ### Links
 
-- [Solution URL](https://your-solution-url.com)
+- [Solution URL](https://www.frontendmentor.io/solutions/age-calculator-app-Sj0d5S3bxm)
 - [Live site URL](https://manondupriez.github.io/Age-calculator-app/)
 
 ## My process
