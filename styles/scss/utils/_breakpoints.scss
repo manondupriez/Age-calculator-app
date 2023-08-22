@@ -3,16 +3,16 @@
     body {
         margin: 0;
         padding: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
     }
 
     .main {
         width: 840px;
         height: 651px;
         padding: 56px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         border-radius: 24px 24px 200px 24px;
     }
 
